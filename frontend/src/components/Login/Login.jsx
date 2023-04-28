@@ -62,7 +62,7 @@ export default function Login() {
             <div className="col-lg-6 mb-5 mb-lg-0" style={{ zIndex: "10" }}>
               <h1 className="my-5 display-5 fw-bold ls-tight">
                 WELCOME TO <br />
-                <span>Smart Activity Calendar</span>
+                <span>SMART ACTIVITY CALENDAR</span>
               </h1>
             </div>
             <div className="col-lg-6 mb-5 mb-lg-0 position-relative mt-1">

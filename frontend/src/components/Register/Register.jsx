@@ -4,7 +4,7 @@ import { useNavigate, NavLink } from 'react-router-dom';
 import './Register.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {BASE_URL} from '../../../services/url'
+import { BASE_URL } from '../../../services/url'
 
 function register() {
 
@@ -38,7 +38,8 @@ function register() {
         const { name, username, id, password, cpassword } = user;
 
         // Validating input data and posting to server
-        if (name && username && id && (password === cpassword)) { //checking password and confirm password and if both matches then posting data
+        if (name && username && id && (password === cpassword)) {
+            // Passwords match, proceed with registration
             const res = await axios.post(`${BASE_URL}/register`, user)
             if (res.data.error) {
                 toast.error(res.data.error, {
@@ -51,16 +52,14 @@ function register() {
             }
 
         } else {
-            if (password !== cpassword) {
-                setErrorMessage('Passwords do not match.');
-            } else {
-                setErrorMessage('Invalid Input');
-            }
-            toast.error(errorMessage, {
+            // Passwords do not match, show error message
+            setErrorMessage('Passwords do not match.');
+            toast.error('Passwords do not match.', {
                 position: "top-center"
             })
         }
     }
+
 
 
 

@@ -25,7 +25,6 @@ function NoticeAlert() {
 
         fetchData();
     }, []);
-    console.log(notices)
 
     // Convert time to a display format
     let displayTime = moment(notices.time, 'HH:mm').format('hh:mm A');
@@ -38,6 +37,7 @@ function NoticeAlert() {
     useEffect(() => {
         const interval = setInterval(() => {
             if (
+                moment().format('HH:mm') === '07:00' ||
                 moment().format('HH:mm') === '08:00' ||
                 moment().format('HH:mm') === '09:00' ||
                 moment().format('HH:mm') === '10:00' ||
@@ -51,7 +51,7 @@ function NoticeAlert() {
                 moment().format('HH:mm') === '18:00' ||
                 moment().format('HH:mm') === '19:00' ||
                 moment().format('HH:mm') === '20:00' ||
-                moment().format('HH:mm') === '14:14'
+                moment().format('HH:mm') === '21:00'
             ) {
                 if (notices.length > 0) {
                     notices.forEach((notice) => {
