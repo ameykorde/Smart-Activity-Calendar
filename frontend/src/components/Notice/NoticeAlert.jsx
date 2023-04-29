@@ -3,7 +3,7 @@ import axios from 'axios';
 import moment from 'moment';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {BASE_URL} from '../../../services/url'
+import { BASE_URL } from '../../../services/url'
 
 function NoticeAlert() {
     const [notices, setNotices] = useState([]);
@@ -33,37 +33,38 @@ function NoticeAlert() {
         displayTime = '';
     }
 
-    // Set up interval to show toast notifications for scheduled notices
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (
-                moment().format('HH:mm') === '07:00' ||
-                moment().format('HH:mm') === '08:00' ||
-                moment().format('HH:mm') === '09:00' ||
-                moment().format('HH:mm') === '10:00' ||
-                moment().format('HH:mm') === '11:00' ||
-                moment().format('HH:mm') === '12:00' ||
-                moment().format('HH:mm') === '13:00' ||
-                moment().format('HH:mm') === '14:00' ||
-                moment().format('HH:mm') === '15:00' ||
-                moment().format('HH:mm') === '16:00' ||
-                moment().format('HH:mm') === '17:00' ||
-                moment().format('HH:mm') === '18:00' ||
-                moment().format('HH:mm') === '19:00' ||
-                moment().format('HH:mm') === '20:00' ||
-                moment().format('HH:mm') === '21:00'
-            ) {
-                if (notices.length > 0) {
-                    notices.forEach((notice) => {
-                        toast(` ${notice.title} is scheduled at ${displayTime}`, { position: 'top-right' });
-                    });
+    // Fetch notice data from server on component mount if user logged in
+    if (localStorage.getItem("user")) {
+        useEffect(() => {
+            const interval = setInterval(() => {
+                if (
+                    moment().format('HH:mm') === '07:00' ||
+                    moment().format('HH:mm') === '08:00' ||
+                    moment().format('HH:mm') === '09:00' ||
+                    moment().format('HH:mm') === '10:00' ||
+                    moment().format('HH:mm') === '11:00' ||
+                    moment().format('HH:mm') === '12:00' ||
+                    moment().format('HH:mm') === '13:00' ||
+                    moment().format('HH:mm') === '14:00' ||
+                    moment().format('HH:mm') === '15:00' ||
+                    moment().format('HH:mm') === '16:00' ||
+                    moment().format('HH:mm') === '17:00' ||
+                    moment().format('HH:mm') === '18:00' ||
+                    moment().format('HH:mm') === '19:00' ||
+                    moment().format('HH:mm') === '20:00' ||
+                    moment().format('HH:mm') === '21:00'
+                ) {
+                    if (notices.length > 0) {
+                        notices.forEach((notice) => {
+                            toast(` ${notice.title} is scheduled at ${displayTime}`, { position: 'top-right', autoClose: 15000 });
+                        });
+                    }
                 }
-            }
-        }, 60000); // 1 minute in milliseconds to run these function every minute
-
-        // Clear interval on component unmount
-        return () => clearInterval(interval);
-    }, [notices]);
+            }, 60000); // 1 minute in milliseconds to run these function every minute
+            // Clear interval on component unmount
+            return () => clearInterval(interval);
+        }, [notices]);
+    }
 
     return (
         <>
