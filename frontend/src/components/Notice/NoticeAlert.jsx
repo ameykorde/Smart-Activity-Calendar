@@ -4,8 +4,10 @@ import moment from 'moment';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BASE_URL } from '../../../services/url'
+import 'moment-timezone';
 
 function NoticeAlert() {
+    moment.tz.setDefault('Asia/Kolkata');  //setting default timezone to Indian Timezone
     const [notices, setNotices] = useState([]);
 
     // Fetch notice data from server on component mount
@@ -22,17 +24,11 @@ function NoticeAlert() {
                 console.error(error);
             }
         };
-
+        
         fetchData();
     }, []);
-
-    // Convert time to a display format
-    let displayTime = moment(notices.time, 'HH:mm').format('hh:mm A');
-    // If the time is invalid, set displayTime to an empty string
-    if (displayTime === 'Invalid date') {
-        displayTime = '';
-    }
-
+    
+    
     // Fetch notice data from server on component mount if user logged in
     if (localStorage.getItem("user")) {
         useEffect(() => {
@@ -53,9 +49,15 @@ function NoticeAlert() {
                     moment().format('HH:mm') === '19:00' ||
                     moment().format('HH:mm') === '20:00' ||
                     moment().format('HH:mm') === '21:00'
-                ) {
-                    if (notices.length > 0) {
+                    ) {
+                        if (notices.length > 0) {
                         notices.forEach((notice) => {
+                        // Convert time to a display format
+                        let displayTime = moment(notice.time, 'HH:mm').format('hh:mm A');
+                        // If the time is invalid, set displayTime to an empty string
+                        if (displayTime === 'Invalid date') {
+                            displayTime = '';
+                        }
                             toast(` ${notice.title} is scheduled at ${displayTime}`, { position: 'top-right', autoClose: 15000 });
                         });
                     }

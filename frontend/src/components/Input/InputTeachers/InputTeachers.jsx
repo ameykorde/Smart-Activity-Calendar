@@ -22,14 +22,14 @@ function InputTeachers() {
     try {
       const response = await axios.post(`${BASE_URL}/teacher/post`, formData);
       console.log(response.data);
-      toast.success('Teacher added successfully!');
+      toast.success('Data added successfully!');
       // Reset form and file input after successful submission
       setName('');
       setEmail('');
       setFile(null);
     } catch (error) {
       console.error(error);
-      toast.error('Failed to add teacher!');
+      toast.error('Failed to add Data!');
     }
   };
 
@@ -43,7 +43,7 @@ function InputTeachers() {
       <div className="container">
         <h1>Teachers Time Table</h1>
       </div>
-      <form className="input" onSubmit={handleSubmit} encType="multipart/form-data">
+      <form className="input-card container" onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="input-group mb-3 me-3 ">
           <span className="input-group-text">Name</span>
           <input

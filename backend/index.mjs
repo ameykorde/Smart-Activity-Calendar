@@ -5,7 +5,7 @@ import cors from 'cors';
 import connectDB from './connectDB/connectDB.mjs';
 import authRoute from './routes/authRoute.mjs';
 import notice from './routes/notice.mjs';
-import ongoing from './routes/ongoing.mjs';             
+import ongoing from './routes/ongoing.mjs';
 import teachers from './routes/teachers.mjs';
 import timeTable from './routes/timeTable.mjs';
 import calendar from './routes/acRoute.mjs';
@@ -22,11 +22,9 @@ app.use(cors());
 // Load environment variables
 dotenv.config({ path: './.env' });
 
+
 // Set up port number
 const PORT = process.env.PORT || 5000;
-
-// Connect to MongoDB
-connectDB();
 
 // Use express json middleware
 app.use(express.json());
@@ -43,9 +41,12 @@ app.use('/timetable', verify, timeTable);
 app.use('/teacher', verify, teachers);
 app.use('/ongoing', verify, ongoing);
 app.use('/calendar', verify, calendar);
-app.use('/todo',verify,todo)
+app.use('/todo', verify, todo);
 
 app.use('/absent', absentTeacher);
+
+// Connect to MongoDB
+connectDB();
 
 // Start server
 app.listen(PORT, () => {
