@@ -14,27 +14,27 @@ It supports multiple users with secure authentication and role-based access cont
 ## ⚙️ Features
 
 ### 👥 Authentication & Roles
-- Secure login using JWT
+- Secure login using JWT  
 - Role-based access (Admin / Faculty)
 
 ### 📢 Notice Management
-- Admin can create and publish notices
-- All users can view notices in real-time
+- Admin can create and publish notices  
+- All users can view notices in real-time  
 
 ### 🗓️ Timetable System
-- Structured timetable input
+- Structured timetable input  
 - Displays ongoing classes based on current time  
-  *(e.g., 4th Sem - Section A - OOPS)*
+  *(e.g., 4th Sem - Section A - OOPS)*  
 
 ### 📌 Faculty Management
-- Mark faculty as absent
-- Absence visible to all users
+- Mark faculty as absent  
+- Absence visible to all users  
 
 ### 📝 Personal To-Do
-- Individual task tracking for users
+- Individual task tracking for users  
 
 ### 📅 Academic Calendar
-- Centralized academic event tracking
+- Centralized academic event tracking  
 
 ---
 
@@ -43,7 +43,7 @@ It supports multiple users with secure authentication and role-based access cont
 - Frontend: React  
 - Backend: Node.js  
 - Authentication: JWT  
-- Database: PostgreSQL / MySQL  
+- Database: MongoDB  
 - Environment: Linux  
 
 ---
@@ -51,12 +51,7 @@ It supports multiple users with secure authentication and role-based access cont
 ## 🔧 How to Run
 
 ```bash
-# clone repo
 git clone https://github.com/your-username/campus-management-system.git
-
-# install dependencies
 cd project-folder
 npm install
-
-# run backend
 npm start
